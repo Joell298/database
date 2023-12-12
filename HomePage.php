@@ -24,5 +24,28 @@ try{
         <input type="text" name="achternaam">
         <input type="submit">
     </form>
+
+    <table>
+        
+      <tr>
+        <th>StudentenID</th>
+        <th>Naam</th>
+        <th>Achternaam</th>
+      </tr>
+     
+      <tr> <?php $db = new Database();
+           $users = $db->select();
+           foreach ($users as $user) {
+        ?> 
+           <td><?php echo $user['studentenID']; ?></td>
+           <td><?php echo $user['naam']; ?></td>
+           <td><?php echo $user['achternaam']; ?></td>
+           </tr> <?php } ?>
+      
+
+      </tr>
+    </table>
+
+
 </body>
 </html>

@@ -7,9 +7,21 @@ class Database {
         $this->pdo = new PDO("mysql:host=$host;dbname=$dbName;", $user, $pass);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     }
-    public function insert($naam, $achternaam) {
-        $stmt = $this->pdo->prepare("INSERT INTO $this->table (naam, achternaam) VALUES (?,?)");
-        $stmt->execute([$naam, $achternaam]);
+    public function insert($Naam, $Achternaam) {
+        $stmt = $this->pdo->prepare("INSERT INTO $this->table (Naam, Achternaam) VALUES (?,?)");
+        $stmt->execute([$Naam, $Achternaam]);
     }
+    public function select () {
+        $stmt = $this->pdo->query("select * from $this->table");
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    public function SelectOneUser($id) {
+        $stmt = $this->pdo->prepare ("select * from $this->table WHERE id ?");
+        $stmt->execute([$id]);
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
 }
 ?>
